@@ -28,7 +28,7 @@ Drzewo::~Drzewo() {
 }
 
 void Drzewo::deleteAll() {
-    usunElement(root);
+    deleteElement(root);
 
     //Inicjalizacja straĹĽnika
     guard.color = 'B';
@@ -42,13 +42,13 @@ void Drzewo::deleteAll() {
     Drzewo::size = 0;
 }
 
-void Drzewo::usunElement(ElementDrzewa *elementDrzewa) {
+void Drzewo::deleteElement(ElementDrzewa *elementDrzewa) {
 
     //JeĹĽeli element nie jest straĹĽnikiem, usuĹ„ jego dzieci
     //A nastepnie sam element
     if (elementDrzewa != &guard) {
-        usunElement(elementDrzewa->left);
-        usunElement(elementDrzewa->right);
+        deleteElement(elementDrzewa->left);
+        deleteElement(elementDrzewa->right);
         delete elementDrzewa;
 
         //Zmniejsz rozmiar drzewa
@@ -105,7 +105,7 @@ void Drzewo::rotateRight(ElementDrzewa *treeElement) {
 void Drzewo::push(int wartosc) {
 
     ElementDrzewa *X, *Y;
-
+    size++;
     //Stworzenie nowego wÄ™zĹ‚a dla drzewa
     X = new ElementDrzewa;
     X->left = &guard;
@@ -199,15 +199,14 @@ void Drzewo::push(int wartosc) {
         }
         root->color = 'B';
 
-        //ZwiÄ™kszenie rozmiaru drzewa o 1
-        size++;
+
     }
 }
 
 void Drzewo::deleteElement(int wartosc) {
 
-    ElementDrzewa *elementToDelete;
-    findElement(wartosc, root, elementToDelete);
+    ElementDrzewa *elementToDelete = findElement(wartosc);
+
 
     ElementDrzewa *W, *Y, *Z;
 
@@ -306,16 +305,18 @@ void Drzewo::deleteElement(int wartosc) {
 
 }
 
-void Drzewo::findElement(int value, ElementDrzewa *elementRoot, ElementDrzewa *&soughtElement) {
-    if (elementRoot != &guard) {
-        if (elementRoot->value == value) {
-            soughtElement = elementRoot;
-            return;
-        }
-        findElement(value, elementRoot->left, soughtElement);
-        findElement(value, elementRoot->right, soughtElement);
-    }
+
+ElementDrzewa *Drzewo::findElement(int value) {
+    ElementDrzewa *p;
+
+    p = root;
+    while ((p != &guard) && (p->value != value))
+        if (value < p->value) p = p->left;
+        else p = p->right;
+    if (p == &guard) return nullptr;
+    return p;
 }
+
 
 bool Drzewo::checkIfPresent(int wartosc) {
     return findVaule(wartosc, this->root);
@@ -330,37 +331,46 @@ bool Drzewo::findVaule(int wartosc, ElementDrzewa *elementRoot) {
         findVaule(wartosc, elementRoot->left);
         findVaule(wartosc, elementRoot->right);
         return false;
-    }
-    else return false;
+    } else return false;
 }
 
-void Drzewo::print(const std::string& spaces, std::string corner, ElementDrzewa *pElementDrzewa) {
-        //Rekurencyjny algorytm graficznego wypisywania kopca
-        if(pElementDrzewa != &guard)
-        {
-            std::string newSpaces;
+void Drzewo::print() {
+    if (size == 0) {
+        std::cout << "Drzewo nie zawiera zadnych elementow" << std::endl;
+        return;
+    }
 
-            newSpaces = spaces;
-            int len = std::to_string(pElementDrzewa->value).length();  //Długość rodzica
-            for(int i = 0; i<len;i++)                                  //Dodawanie spacji
-                newSpaces+= ' ';
+    printGraphic("", "", root);
+}
 
-            if( corner == rightCorner ) newSpaces [ newSpaces.length( ) - (len+1) ] = ' ';    //Usuwa zbędne poprzeczki
-            print(newSpaces + bar, rightCorner, pElementDrzewa->right);        //Prawy syn
+void Drzewo::printGraphic(const std::string &spaces, std::string corner, ElementDrzewa *pElementDrzewa) {
+    //Rekurencyjny algorytm graficznego wypisywania kopca
 
-            //Wypisywanie ostatecznego wciącia
-            std::string toPrint = spaces;
-            toPrint[toPrint.length()-1]=corner[0];
-            std::cout << toPrint << pElementDrzewa->value;
-            if(pElementDrzewa->left != &guard || pElementDrzewa->right != &guard) std::cout << char(180);std::cout << std::endl;
+    if (pElementDrzewa != &guard) {
+        std::string newSpaces;
 
-            newSpaces = spaces;
-            for(int i = 0; i<len;i++)    //Dodawanie spacji
-                newSpaces+= ' ';
+        newSpaces = spaces;
+        int len = std::to_string(pElementDrzewa->value).length();  //Długość rodzica
+        for (int i = 0; i < len; i++)                                  //Dodawanie spacji
+            newSpaces += ' ';
 
-            if( corner == leftCorner ) newSpaces [ newSpaces.length( ) - (len+1) ] = ' ';     //Usuwa zbędne poprzeczki
-            print(newSpaces + bar, leftCorner, pElementDrzewa->left);          //Lewy syn
-        }
+        if (corner == rightCorner) newSpaces[newSpaces.length() - (len + 1)] = ' ';    //Usuwa zbędne poprzeczki
+        printGraphic(newSpaces + bar, rightCorner, pElementDrzewa->right);        //Prawy syn
+
+        //Wypisywanie ostatecznego wciącia
+        std::string toPrint = spaces;
+        toPrint[toPrint.length() - 1] = corner[0];
+        std::cout << toPrint << pElementDrzewa->value;
+        if (pElementDrzewa->left != &guard || pElementDrzewa->right != &guard) std::cout << char(180);
+        std::cout << std::endl;
+
+        newSpaces = spaces;
+        for (int i = 0; i < len; i++)    //Dodawanie spacji
+            newSpaces += ' ';
+
+        if (corner == leftCorner) newSpaces[newSpaces.length() - (len + 1)] = ' ';     //Usuwa zbędne poprzeczki
+        printGraphic(newSpaces + bar, leftCorner, pElementDrzewa->left);          //Lewy syn
+    }
 }
 
 ElementDrzewa *Drzewo::findNextElement(ElementDrzewa *p) {

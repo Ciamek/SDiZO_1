@@ -65,30 +65,32 @@ void KopiecBinarny::pop() {
 void KopiecBinarny::pop(int value) {
 
     int pos = checkIfPresent(value);
-    if(pos != -1)
-    {
-        int v = tab [--size];
+    if (pos) {
+        int v = tab[--size];
         int i = pos;
-        int j = 2*pos + 1;
+        int j = 2 * pos + 1;
 
-        while( j < size )
-        {
-            if( j + 1 < size && tab [ j + 1 ] > tab [ j ] ) j++;
-            if( v >= tab [ j ] ) break;
-            tab [ i ] = tab [ j ];
+        while (j < size) {
+            if (j + 1 < size && tab[j + 1] > tab[j]) j++;
+            if (v >= tab[j]) break;
+            tab[i] = tab[j];
             i = j;
             j = 2 * j + 1;
         }
-        tab [ i ] = v;
+        tab[i] = v;
     }else std::cout<<"Nie ma takiego indeksu!"<<std::endl;
 }
 
 void KopiecBinarny::print() {
-    std::cout<<"Tablica kopca:"<<std::endl;
-    for(int i = 0; i < size ; i++)
-        std::cout<<tab[i]<<' ';
-    std::cout<<std::endl;
-    printGraphic("","",0);
+    if (size == 0) {
+        std::cout << "Kopiec nie zawiera zadnych elementow" << std::endl;
+        return;
+    }
+    std::cout << "Tablica kopca:" << std::endl;
+    for (int i = 0; i < size; i++)
+        std::cout << '{' << tab[i] << "} ";
+    std::cout << std::endl << std::endl;
+    printGraphic("", "", 0);
 }
 
 

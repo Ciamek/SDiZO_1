@@ -16,7 +16,7 @@
 
 using namespace std;
 
-void otworzPliki(ifstream &plikWejsciowy, ofstream &plikWyjsciowy) {
+void otworzPliki(ifstream &plikWejsciowy, ofstream &plikWyjsciowy, int &dataSize) {
     string daneWejsciowe, daneWyjsciowe;
     cout << "Nazwa pliku z danymi wejsciowymi: ";
     cin >> daneWejsciowe;
@@ -31,7 +31,7 @@ void otworzPliki(ifstream &plikWejsciowy, ofstream &plikWyjsciowy) {
         cout <<endl<< "Otwarto plik " << daneWejsciowe << endl;
     } else {
         cout << "Nie znaleziono pliku! Sprobuj ponownie..." << endl << endl;
-        otworzPliki(plikWejsciowy, plikWyjsciowy);
+        otworzPliki(plikWejsciowy, plikWyjsciowy, dataSize);
         return;
     }
 
@@ -39,9 +39,11 @@ void otworzPliki(ifstream &plikWejsciowy, ofstream &plikWyjsciowy) {
         cout << "Otwarto plik " << daneWyjsciowe << endl;
     } else {
         cout << "Nie znaleziono pliku! Sprobuj ponownie..." << endl << endl;
-        otworzPliki(plikWejsciowy, plikWyjsciowy);
+        otworzPliki(plikWejsciowy, plikWyjsciowy, dataSize);
         return;
     }
+    plikWejsciowy >> dataSize;
+
 }
 
 void AutoTest::testTablicy() {
@@ -50,28 +52,27 @@ void AutoTest::testTablicy() {
     Tablica tablica;
     int wybor = 99;
     int wartosc;
-    int pozycja;
     double time;
+    int dataSize = 0;
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
-    otworzPliki(plikWejsciowy, plikWyjsciowy);
+    otworzPliki(plikWejsciowy, plikWyjsciowy, dataSize);
     sleep(1);
-    system("CLS");
-
     while (wybor != 0) {
+        system("CLS");
         cout << "Wybierz funkcje tablicy:" << endl;
-        cout << "    1. Dodaj na poczatek" << endl;
-        cout << "    2. Dodaj na koniec" << endl;
-        cout << "    3. Dodaj gdziekolwiek" << endl;
-        cout << "    4. Usun pierwszy" << endl;
-        cout << "    5. Usun ostatni" << endl;
-        cout << "    6. Usun ktorykolwiek" << endl;
-        cout << "    7. Wyszukaj element" << endl;
-        cout << "    8. Wydrukuj tablice" << endl;
-        cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
+        cout << "  [1] Dodaj na poczatek" << endl;
+        cout << "  [2] Dodaj na koniec" << endl;
+        cout << "  [3] Dodaj gdziekolwiek" << endl;
+        cout << "  [4] Usun pierwszy" << endl;
+        cout << "  [5] Usun ostatni" << endl;
+        cout << "  [6] Usun ktorykolwiek" << endl;
+        cout << "  [7] Wyszukaj element" << endl;
+        cout << "  [8] Wydrukuj tablice" << endl;
+        cout << "  [0] Wyjscie" << endl << endl;
+        fflush(stdin);
+        wybor = getch() - 48;
 
 
         switch (wybor) {
@@ -315,12 +316,13 @@ void AutoTest::testListy() {
     Lista lista;
     int wybor = 99;
     int wartosc;
+    int dataSize;
     string daneWyjsciowe;
     string daneWejsciowe;
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
     double time;
-    otworzPliki(plikWejsciowy, plikWyjsciowy);
+    otworzPliki(plikWejsciowy, plikWyjsciowy, dataSize);
     sleep(1);
     system("CLS");
 
@@ -335,8 +337,8 @@ void AutoTest::testListy() {
         cout << "    7. Wyszukaj element" << endl;
         cout << "    8. Wydrukuj listee" << endl;
         cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
+        fflush(stdin);
+        wybor = getch() - 48;
 
         switch (wybor) {
             default:
@@ -565,18 +567,20 @@ void AutoTest::testListy() {
 }
 
 void AutoTest::testKopca() {
-    srand(time(NULL));
+    srand(time(nullptr));
     Czas czas;
-    KopiecBinarny kopiec(20000);
     int wybor = 99;
     int wartosc;
+    int dataSize;
     string daneWyjsciowe;
     string daneWejsciowe;
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
     double time;
 
-    otworzPliki(plikWejsciowy, plikWyjsciowy);
+    otworzPliki(plikWejsciowy, plikWyjsciowy, dataSize);
+    KopiecBinarny kopiec(dataSize);
+
     sleep(1);
     system("CLS");
 
@@ -587,8 +591,8 @@ void AutoTest::testKopca() {
         cout << "    3. Wyszukaj" << endl;
         cout << "    4. Wydrukuj kopiec" << endl;
         cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
+        fflush(stdin);
+        wybor = getch() - 48;
 
         switch (wybor) {
             default:
@@ -612,6 +616,7 @@ void AutoTest::testKopca() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
+
                 cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
                 getch();
                 system("CLS");
@@ -649,17 +654,26 @@ void AutoTest::testKopca() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
 
             case 4:
+                while (plikWejsciowy.good()) {
+                    //Wczytaj wartosc z pliku
+                    plikWejsciowy >> wartosc;
+                    //Wykonaj funkcje z pomiarem
+                    kopiec.push(wartosc);
+                }
+
                 czas.StartCounter();
                 kopiec.print();
                 time = czas.GetCounter();
                 cout << "Czas wykonania: " << time << "ms" << endl;
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
@@ -669,18 +683,20 @@ void AutoTest::testKopca() {
 }
 
 void AutoTest::testDrzewa() {
-    srand(time(NULL));
+    srand(time(nullptr));
     Czas czas;
-    Drzewo drzewo;
     int wybor = 99;
     int wartosc;
+    int dataSize;
     double time;
     string daneWyjsciowe;
     string daneWejsciowe;
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
-    otworzPliki(plikWejsciowy, plikWyjsciowy);
+    otworzPliki(plikWejsciowy, plikWyjsciowy, dataSize);
+    Drzewo drzewo;
+
     sleep(1);
     system("CLS");
 
@@ -692,9 +708,8 @@ void AutoTest::testDrzewa() {
         cout << "    3. Wyszukaj" << endl;
         cout << "    4. Wydrukuj drzewo" << endl;
         cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
-
+        fflush(stdin);
+        wybor = getch() - 48;
 
         switch (wybor) {
             default:
@@ -788,7 +803,7 @@ void AutoTest::testDrzewa() {
                 plikWejsciowy.seekg(0, ios::beg);
 
                 czas.StartCounter();
-                drzewo.print("","",drzewo.root);
+                drzewo.printGraphic("", "", drzewo.root);
                 time = czas.GetCounter();
                 cout << "Czas wykonania: " << time << "ms" << endl;
                 

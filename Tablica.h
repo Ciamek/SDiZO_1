@@ -27,7 +27,7 @@ public:
         return this->head[el];
     }
 
-    bool checkIfPresent(int vaule);
+    int checkIfPresent(int vaule);
 
     void print();
 };

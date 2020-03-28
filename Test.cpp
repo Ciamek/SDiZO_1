@@ -4,6 +4,7 @@
 #include "Czas.h"
 #include "Test.h"
 #include <iostream>
+#include <conio.h>
 #include "Tablica.h"
 #include "Lista.h"
 #include "KopiecBinarny.h"
@@ -18,21 +19,25 @@ void Test::testTablicy() {
     int wybor = 99;
     int wartosc;
     int pozycja;
-    long long time;
+    double time;
     
     while (wybor != 0) {
+        system("CLS");
+        tablica.print();
+        cout << endl;
         cout << "Wybierz funkcje tablicy:" << endl;
-        cout << "    1. Dodaj na poczatek" << endl;
-        cout << "    2. Dodaj na koniec" << endl;
-        cout << "    3. Dodaj gdziekolwiek" << endl;
-        cout << "    4. Usun pierwszy" << endl;
-        cout << "    5. Usun ostatni" << endl;
-        cout << "    6. Usun ktorykolwiek" << endl;
-        cout << "    7. Wyszukaj element" << endl;
-        cout << "    8. Wydrukuj tablice" << endl;
-        cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
+        cout << "  [1] Dodaj na poczatek" << endl;
+        cout << "  [2] Dodaj na koniec" << endl;
+        cout << "  [3] Dodaj gdziekolwiek" << endl;
+        cout << "  [4] Usun pierwszy" << endl;
+        cout << "  [5] Usun ostatni" << endl;
+        cout << "  [6] Usun ktorykolwiek" << endl;
+        cout << "  [7] Wyszukaj element" << endl;
+        cout << "  [8] Wydrukuj tablice" << endl;
+        cout << "  [0] Wyjscie" << endl << endl;
+        fflush(stdin);
+        wybor = getch() - 48;
+
         switch (wybor) {
             default:
                 cout << "Bledny wybor!" << endl;
@@ -47,7 +52,14 @@ void Test::testTablicy() {
                 czas.StartCounter();
                 tablica.pushFront(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " << time << "ms" << endl;
+                cout << endl;
+                tablica.print();
+
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 2:
@@ -56,7 +68,12 @@ void Test::testTablicy() {
                 czas.StartCounter();
                 tablica.pushBack(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                tablica.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 3:
@@ -67,21 +84,36 @@ void Test::testTablicy() {
                 czas.StartCounter();
                 tablica.pushAny(wartosc, pozycja);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                tablica.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 4:
                 czas.StartCounter();
                 tablica.popFront();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                tablica.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 5:
                 czas.StartCounter();
                 tablica.popBack();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                tablica.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 6:
@@ -90,23 +122,40 @@ void Test::testTablicy() {
                 czas.StartCounter();
                 tablica.popAny(pozycja);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                tablica.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 7:
-                cout << "Podaj wartosc: ";
+                cout << "Podaj wartosc: " << endl;
                 cin >> wartosc;
+                int check;
                 czas.StartCounter();
-                tablica.checkIfPresent(wartosc);
+                check = tablica.checkIfPresent(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                if (check != -1) cout << "Wartosc znajduje sie na pozycji o indekcsie [" << check << ']' << endl;
+                else cout << "Brak wartości w liscie, lub lista jest pusta." << endl;
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
+
 
             case 8:
                 czas.StartCounter();
                 tablica.print();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
         }
 
@@ -119,21 +168,25 @@ void Test::testListy() {
     int wybor = 99;
     int wartosc;
     int pozycja;
-    long long time;
+    double time;
 
     while (wybor != 0) {
+        system("CLS");
+        lista.print();
+        cout << endl;
         cout << "Wybierz funkcje listy:" << endl;
-        cout << "    1. Dodaj na poczatek" << endl;
-        cout << "    2. Dodaj na koniec" << endl;
-        cout << "    3. Dodaj gdziekolwiek" << endl;
-        cout << "    4. Usun pierwszy" << endl;
-        cout << "    5. Usun ostatni" << endl;
-        cout << "    6. Usun ktorykolwiek" << endl;
-        cout << "    7. Wyszukaj element" << endl;
-        cout << "    8. Wydrukuj liste" << endl;
-        cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
+        cout << "  [1] Dodaj na poczatek" << endl;
+        cout << "  [2] Dodaj na koniec" << endl;
+        cout << "  [3] Dodaj gdziekolwiek" << endl;
+        cout << "  [4] Usun pierwszy" << endl;
+        cout << "  [5] Usun ostatni" << endl;
+        cout << "  [6] Usun ktorykolwiek" << endl;
+        cout << "  [7] Wyszukaj element" << endl;
+        cout << "  [8] Wydrukuj liste" << endl;
+        cout << "  [0] Wyjscie" << endl << endl;
+        fflush(stdin);
+        wybor = getch() - 48;
+
         switch (wybor) {
             default:
                 cout << "Bledny wybor!" << endl;
@@ -148,7 +201,12 @@ void Test::testListy() {
                 czas.StartCounter();
                 lista.pushFront(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                lista.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 2:
@@ -157,7 +215,12 @@ void Test::testListy() {
                 czas.StartCounter();
                 lista.pushBack(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                lista.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 3:
@@ -168,21 +231,36 @@ void Test::testListy() {
                 czas.StartCounter();
                 lista.pushAny(wartosc, pozycja);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                lista.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 4:
                 czas.StartCounter();
                 lista.popFront();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                lista.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 5:
                 czas.StartCounter();
                 lista.popBack();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                lista.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 6:
@@ -191,23 +269,40 @@ void Test::testListy() {
                 czas.StartCounter();
                 lista.popAny(pozycja);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                lista.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 7:
                 cout << "Podaj wartosc: ";
                 cin >> wartosc;
+                int check;
                 czas.StartCounter();
-                lista.checkIfPresent(wartosc);
+                check = lista.checkIfPresent(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                if (check != -1) cout << "Wartosc znajduje sie na pozycji o indekcsie [" << check << ']' << endl;
+                else cout << "Brak wartości w liscie, lub lista jest pusta." << endl;
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 8:
                 czas.StartCounter();
                 lista.print();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
         }
@@ -220,17 +315,20 @@ void Test::testKopca() {
     KopiecBinarny kopiec(20);
     int wybor = 99;
     int wartosc;
-    long long time;
+    double time;
 
     while (wybor != 0) {
+        system("CLS");
+        kopiec.print();
+        cout << endl;
         cout << "Wybierz funkcje Kopca:" << endl;
-        cout << "    1. Dodaj" << endl;
-        cout << "    2. Usun" << endl;
-        cout << "    3. Wyszukaj" << endl;
-        cout << "    4. Wydrukuj kopiec" << endl;
-        cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
-        cin >> wybor;
+        cout << "  [1] Dodaj" << endl;
+        cout << "  [2] Usun" << endl;
+        cout << "  [3] Wyszukaj" << endl;
+        cout << "  [4] Wydrukuj kopiec" << endl;
+        cout << "  [0] Wyjscie" << endl << endl;
+        fflush(stdin);
+        wybor = getch() - 48;
         switch (wybor) {
             default:
                 cout << "Bledny wybor!" << endl;
@@ -245,16 +343,26 @@ void Test::testKopca() {
                 czas.StartCounter();
                 kopiec.push(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                kopiec.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 2:
-                cout << "Podaj wartosc: ";
+                cout << "Podaj pozycje: ";
                 cin >> wartosc;
                 czas.StartCounter();
                 kopiec.pop(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                kopiec.print();
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 3:
@@ -263,14 +371,24 @@ void Test::testKopca() {
                 czas.StartCounter();
                 kopiec.checkIfPresent(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 4:
                 czas.StartCounter();
                 kopiec.print();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
         }
 
@@ -282,16 +400,20 @@ void Test::testDrzewa() {
     Drzewo drzewo;
     int wybor = 99;
     int wartosc;
-    long long time;
+    double time;
 
     while (wybor != 0) {
+        system("CLS");
+        drzewo.print();
+        cout << endl;
         cout << "Wybierz funkcje Drzewa:" << endl;
-        cout << "    1. Dodaj" << endl;
-        cout << "    2. Usun" << endl;
-        cout << "    3. Wyszukaj" << endl;
-        cout << "    4. Wydrukuj drzewo" << endl;
-        cout << "    0. Wyjscie" << endl << endl;
-        cout << "Wybor: ";
+        cout << "  [1] Dodaj" << endl;
+        cout << "  [2] Usun" << endl;
+        cout << "  [3] Wyszukaj" << endl;
+        cout << "  [4] Wydrukuj drzewo" << endl;
+        cout << "  [0] Wyjscie" << endl << endl;
+        fflush(stdin);
+        //wybor = getch() - 48;
         cin >> wybor;
         switch (wybor) {
             default:
@@ -307,7 +429,12 @@ void Test::testDrzewa() {
                 czas.StartCounter();
                 drzewo.push(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                drzewo.printGraphic("", "", drzewo.root);
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                //getch();
+                system("CLS");
                 break;
 
             case 2:
@@ -316,7 +443,12 @@ void Test::testDrzewa() {
                 czas.StartCounter();
                 drzewo.deleteElement(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                drzewo.printGraphic("", "", drzewo.root);
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                //getch();
+                system("CLS");
                 break;
 
             case 3:
@@ -325,14 +457,23 @@ void Test::testDrzewa() {
                 czas.StartCounter();
                 drzewo.checkIfPresent(wartosc);
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
             case 4:
                 czas.StartCounter();
-                cout << "NIE DZIAĹA" << endl;
+                drzewo.print();
                 time = czas.GetCounter();
-                cout << "Czas wykonania: " <<time<< "ms" << endl;
+                cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
+                fflush(stdin);
+                getch();
+                system("CLS");
                 break;
 
         }

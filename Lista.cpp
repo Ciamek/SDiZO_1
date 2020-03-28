@@ -168,10 +168,10 @@ int Lista::getSize()
     return this->size;
 }
 
-bool Lista::checkIfPresent(int value) {
+int Lista::checkIfPresent(int value) {
     //JeĹĽeli lista jest pusta, zwrĂłÄ‡ false z automatu
     if (size == 0) {
-        return false;
+        return -1;
 
     }
     ListEl *newHead;
@@ -181,23 +181,28 @@ bool Lista::checkIfPresent(int value) {
     //Przeszukaj listÄ™ pod kÄ…tem wartoĹ›ci
     for (int i = 0; i < size; i++) {
         if (newHead->data == value) {
-            return true;
+            return i;
         }
 
         newHead = newHead->next;
     }
 
     //JeĹĽeli wartoĹ›Ä‡ nie wystÄ…piĹ‚a w ĹĽadnej iteracji listy zwrĂłÄ‡ false
-    return false;
+    return -1;
 }
 
 void Lista::print() {
 //Ustaw jako akutualny element pierwszy element listy
+
+    cout << "Aktualny stan listy:" << endl;
     ListEl *newHead = head;
+
+    if (size == 0)
+        cout << "Lista nie zawiera zadnego elementu." << endl;
 
     for (int i = 0; i < size; i++) {
 
-        cout << "{" << newHead->data << "} "  << endl;
+        cout << "{" << newHead->data << "} ";
 
         //Przypisz kolejny element listy jako aktualny
         newHead = newHead->next;

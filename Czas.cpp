@@ -16,7 +16,7 @@ void Czas::StartCounter()
     if(!QueryPerformanceFrequency(&li))
         std::cout << "QueryPerformanceFrequency failed!\n";
 
-    PCFreq = double(li.QuadPart)/1000000000.0;
+    PCFreq = double(li.QuadPart) / 1000.0;
 
     QueryPerformanceCounter(&li);
     CounterStart = li.QuadPart;

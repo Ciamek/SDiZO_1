@@ -99,23 +99,23 @@ int Tablica::getSize() {
     return this->size;
 }
 
-bool Tablica::checkIfPresent(int value) {
+int Tablica::checkIfPresent(int value) {
     for (int i = 0; i < size; i++) {
         if (head[i] == value) {
-            return true;
+            return i;
         }
     }
-    return false;
+    return -1;
 }
 
 void Tablica::print() {
     cout << "Aktualny stan tablicy:" << endl;
     if (head != nullptr) {
         for (int i = 0; i < size; i++) {
-            cout << "{" << head[i] << "}"<<endl;
+            cout << "{" << head[i] << "} ";
         }
     } else {
-        cout << "    Tablica nie ma zadnych elementow" << endl;
+        cout << "    Tablica nie zawiera zadnych elementow" << endl;
     }
 }
 

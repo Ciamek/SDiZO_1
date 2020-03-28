@@ -46,7 +46,7 @@ public:
     }
 
 
-    bool checkIfPresent(int i);
+    int checkIfPresent(int i);
 
     void print();
 };

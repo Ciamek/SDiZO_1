@@ -39,22 +39,27 @@ public:
 
     bool checkIfPresent(int);
 
-    void print(const std::string&, std::string, ElementDrzewa*);
+    void printGraphic(const std::string &spaces, std::string corner, ElementDrzewa *pElementDrzewa);
 
     ElementDrzewa *root;
+
+    void print();
+
+    bool findElement(int value, ElementDrzewa *elementRoot, ElementDrzewa *&soughtElement);
+
 private:
 
     ElementDrzewa guard{};
 
-    void usunElement(ElementDrzewa *);
-
-    void findElement(int value, ElementDrzewa *elementRoot, ElementDrzewa *&soughtElement);
+    void deleteElement(ElementDrzewa *elementDrzewa);
 
     bool findVaule(int wartosc, ElementDrzewa *elementRoot);
 
     ElementDrzewa *findNextElement(ElementDrzewa *p);
 
     ElementDrzewa *findSmallestElement(ElementDrzewa *p);
+
+    ElementDrzewa *findElement(int value);
 };
 
 
