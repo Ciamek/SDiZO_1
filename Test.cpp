@@ -413,8 +413,7 @@ void Test::testDrzewa() {
         cout << "  [4] Wydrukuj drzewo" << endl;
         cout << "  [0] Wyjscie" << endl << endl;
         fflush(stdin);
-        //wybor = getch() - 48;
-        cin >> wybor;
+        wybor = getch() - 48;
         switch (wybor) {
             default:
                 cout << "Bledny wybor!" << endl;
@@ -433,7 +432,7 @@ void Test::testDrzewa() {
                 cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
                      << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 fflush(stdin);
-                //getch();
+                getch();
                 system("CLS");
                 break;
 
@@ -447,7 +446,7 @@ void Test::testDrzewa() {
                 cout << endl << endl << "Czas wykonania: " << time << "ms" << endl
                      << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 fflush(stdin);
-                //getch();
+                getch();
                 system("CLS");
                 break;
 

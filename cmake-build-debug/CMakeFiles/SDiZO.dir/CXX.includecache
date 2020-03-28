@@ -6,11 +6,35 @@
 
 #IncludeRegexTransform: 
 
-D:/Dev/Projects/C++/SDiZO/Drzewo.cpp
+D:/Dev/Projects/C++/SDiZO/Czas.h
+windows.h
+-
+
+D:/Dev/Projects/C++/SDiZO/Drzewo.h
+
+D:/Dev/Projects/C++/SDiZO/KopiecBinarny.h
+
+D:/Dev/Projects/C++/SDiZO/Lista.h
+
+D:/Dev/Projects/C++/SDiZO/Tablica.h
+
+D:/Dev/Projects/C++/SDiZO/Test.cpp
+Czas.h
+D:/Dev/Projects/C++/SDiZO/Czas.h
+Test.h
+D:/Dev/Projects/C++/SDiZO/Test.h
 iostream
 -
+conio.h
+-
+Tablica.h
+D:/Dev/Projects/C++/SDiZO/Tablica.h
+Lista.h
+D:/Dev/Projects/C++/SDiZO/Lista.h
+KopiecBinarny.h
+D:/Dev/Projects/C++/SDiZO/KopiecBinarny.h
 Drzewo.h
 D:/Dev/Projects/C++/SDiZO/Drzewo.h
 
-D:/Dev/Projects/C++/SDiZO/Drzewo.h
+D:/Dev/Projects/C++/SDiZO/Test.h
 
