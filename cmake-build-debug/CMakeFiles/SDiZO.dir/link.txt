@@ -1,3 +1,0 @@
-"D:\Dev\IDEs\CLion 2019.3.4\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\SDiZO.dir/objects.a
-D:\Dev\MinGW\mingw64\bin\ar.exe cr CMakeFiles\SDiZO.dir/objects.a @CMakeFiles\SDiZO.dir\objects1.rsp
-D:\Dev\MinGW\mingw64\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\SDiZO.dir/objects.a -Wl,--no-whole-archive  -o SDiZO.exe -Wl,--out-implib,libSDiZO.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\SDiZO.dir\linklibs.rsp
