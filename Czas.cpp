@@ -4,14 +4,17 @@
 
 #include "Czas.h"
 #include <iostream>
+#include <windows.h>
 
-Czas::Czas()
-{
+using namespace std;
+
+Czas::Czas() {
     PCFreq = 0.0;
     CounterStart = 0;
 }
-void Czas::StartCounter()
-{
+
+void Czas::StartCounter() {
+
     LARGE_INTEGER li;
     if(!QueryPerformanceFrequency(&li))
         std::cout << "QueryPerformanceFrequency failed!\n";
@@ -23,6 +26,7 @@ void Czas::StartCounter()
 }
 double  Czas::GetCounter()
 {
+
     LARGE_INTEGER li;
     QueryPerformanceCounter(&li);
     return double(li.QuadPart-CounterStart)/PCFreq;

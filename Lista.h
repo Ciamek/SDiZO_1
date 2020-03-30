@@ -11,44 +11,44 @@ struct ListEl{
 };
 
 class Lista{
-
-public:
-
 private:
     ListEl *head, *tail;
     int size;
-
 public:
     Lista();
+
     ~Lista();
+
     void pushFront(int value);
+
     void pushBack(int value);
+
     void popFront();
+
     void popBack();
+
     void pushAny(int value, int pos);
+
     void popAny(int pos);
+
     int getSize();
 
+    int checkIfPresent(int i);
 
-    ListEl *operator [] (int el){
+    void print();
+
+    ListEl *operator[](int el) {
         ListEl *temp = head;
-        if(el<size)
-        {
-            for(int i=0;i<el;i++)
-            {
+        if (el < size) {
+            for (int i = 0; i < el; i++) {
                 temp = temp->next;
             }
-        return temp;
+            return temp;
         }
         else{
             std::cout<<"Nie ma takiego indeksu!"<<std::endl;
         }
     }
-
-
-    int checkIfPresent(int i);
-
-    void print();
 };
 
 #endif //SDIZO_LISTA_H

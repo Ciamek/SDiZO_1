@@ -54,6 +54,7 @@ void AutoTest::testTablicy() {
     int wartosc;
     double time;
     int dataSize = 0;
+    double average = 0;
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
@@ -90,6 +91,7 @@ void AutoTest::testTablicy() {
                 plikWyjsciowy <<endl<< "Pomiar dodawania z przodu:" << endl;
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
+                average = 0;
                 while (plikWejsciowy.good()) {
                     //Wczytaj wartosc z pliku
                     plikWejsciowy >> wartosc;
@@ -98,14 +100,19 @@ void AutoTest::testTablicy() {
                     tablica.pushFront(wartosc);
                     time = czas.GetCounter();
                     //Zapisz do pliku wynik pomiaru
-
+                    average += time;
+                    average += time;
                     plikWyjsciowy << time << endl;
                 }
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
+
                 while (tablica.getSize() != 0) {
                     tablica.popFront();
                 }
 
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
@@ -116,7 +123,7 @@ void AutoTest::testTablicy() {
 
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-
+                average = 0;
                 while (plikWejsciowy.good()) {
                     //Wczytaj wartosc z pliku
                     plikWejsciowy >> wartosc;
@@ -127,11 +134,14 @@ void AutoTest::testTablicy() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
 
                 while (tablica.getSize() != 0) {
                     tablica.popFront();
                 }
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
@@ -143,7 +153,7 @@ void AutoTest::testTablicy() {
 
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-
+                average = 0;
 
                 while (plikWejsciowy.good()) {
                     //Wczytaj wartosc z pliku
@@ -154,7 +164,7 @@ void AutoTest::testTablicy() {
                         czas.StartCounter();
                         tablica.pushAny(wartosc, 0);
                         time = czas.GetCounter();
-                    }else {//Wykonaj funkcje z pomiarem
+                    } else {//Wykonaj funkcje z pomiarem
                         czas.StartCounter();
                         tablica.pushAny(wartosc, 1);
                         time = czas.GetCounter();
@@ -162,11 +172,14 @@ void AutoTest::testTablicy() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
 
                 while (tablica.getSize() != 0) {
                     tablica.popFront();
                 }
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
@@ -176,8 +189,8 @@ void AutoTest::testTablicy() {
             case 4:
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-                plikWyjsciowy <<endl<< "Pomiar usuwania z przodu:" << endl;
-
+                plikWyjsciowy << endl << "Pomiar usuwania z przodu:" << endl;
+                average = 0;
                 //Wypelnij tablice wartoscciami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
@@ -189,22 +202,24 @@ void AutoTest::testTablicy() {
                     tablica.popFront();
                     time = czas.GetCounter();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << time<< endl;
+                    plikWyjsciowy << time << endl;
                 }
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
 
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
 
 
-
             case 5:
-                plikWyjsciowy <<endl<< "Pomiar usuwania z tylu:" << endl;
+                plikWyjsciowy << endl << "Pomiar usuwania z tylu:" << endl;
 
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-
+                average = 0;
                 //Wypelnij tablice wartoscciami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
@@ -218,19 +233,21 @@ void AutoTest::testTablicy() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
 
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
 
 
-
             case 6:
-                plikWyjsciowy <<endl<< "Pomiar usuwania w losowym miejscu:" << endl;
+                plikWyjsciowy << endl << "Pomiar usuwania w losowym miejscu:" << endl;
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-
+                average = 0;
                 //Wypelnij tablice wartoscciami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
@@ -244,20 +261,21 @@ void AutoTest::testTablicy() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
 
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
-
-
 
 
             case 7:
                 plikWyjsciowy <<endl<< "Pomiar sprawdzania czy wartość jest obecna:" << endl;
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-
+                average = 0;
                 //Wypelnij tablice wartoscciami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
@@ -272,21 +290,24 @@ void AutoTest::testTablicy() {
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
                 }
-                    while (tablica.getSize() != 0) {
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
+
+                while (tablica.getSize() != 0) {
                     tablica.popFront();
                 }
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
-
 
 
             case 8:
                 plikWyjsciowy <<endl<< "Pomiar wypisywania:" << endl;
                 plikWejsciowy.clear();
                 plikWejsciowy.seekg(0, ios::beg);
-
+                average = 0;
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
                     tablica.pushFront(wartosc);
@@ -295,12 +316,16 @@ void AutoTest::testTablicy() {
                 tablica.print();
                 time = czas.GetCounter();
                 cout << "Czas wykonania: " << time << "ms" << endl;
-                plikWyjsciowy  << time << "ms" << endl;
+                plikWyjsciowy << time << endl;
+
+                average /= dataSize;
+                plikWyjsciowy << "Czas sredni: " << average << endl;
 
                 while (tablica.getSize() != 0) {
                     tablica.popFront();
                 }
-                cout<<"Pomyslnie wykonano operacje ["<<wybor<<']'<<endl<<"Nacisnij downolny klawisz by kontynuowac..."<<endl;
+                cout << "Pomyslnie wykonano operacje [" << wybor << ']' << endl
+                     << "Nacisnij downolny klawisz by kontynuowac..." << endl;
                 getch();
                 system("CLS");
                 break;
@@ -782,10 +807,10 @@ void AutoTest::testDrzewa() {
                     drzewo.push(wartosc);
                 }
 
-                for (int i = 0; i < drzewo.size; i++) {
+                for (int i = 0; i < drzewo.getSize(); i++) {
                     //Wykonaj funkcje z pomiarem
                     czas.StartCounter();
-                    drzewo.checkIfPresent(rand()% 2000000 - 1000000);
+                    drzewo.checkIfPresent(rand() % 2000000 - 1000000);
                     time = czas.GetCounter();
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << time << endl;
@@ -816,3 +841,4 @@ void AutoTest::testDrzewa() {
 
     }
 }
+

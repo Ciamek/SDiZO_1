@@ -7,18 +7,14 @@
 
 
 class KopiecBinarny {
-
 private:
     int *tab;
     signed int size;
-
     std::string rightCorner, leftCorner, bar;
-
 
 public:
      explicit KopiecBinarny(int);
     ~KopiecBinarny();
-
     void push(int);
     void pop();
     void pop(int);
@@ -26,8 +22,6 @@ public:
     bool checkIfPresent(int);
     int getSize();
     void printGraphic(const std::string&, std::string, int);
-
-
 };
 
 

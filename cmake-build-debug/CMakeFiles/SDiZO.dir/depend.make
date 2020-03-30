@@ -33,9 +33,6 @@ CMakeFiles/SDiZO.dir/Test.cpp.obj: ../Test.cpp
 CMakeFiles/SDiZO.dir/Test.cpp.obj: ../Test.h
 
 CMakeFiles/SDiZO.dir/main.cpp.obj: ../AutoTest.h
-CMakeFiles/SDiZO.dir/main.cpp.obj: ../Drzewo.h
-CMakeFiles/SDiZO.dir/main.cpp.obj: ../KopiecBinarny.h
-CMakeFiles/SDiZO.dir/main.cpp.obj: ../Lista.h
 CMakeFiles/SDiZO.dir/main.cpp.obj: ../Test.h
 CMakeFiles/SDiZO.dir/main.cpp.obj: ../main.cpp
 

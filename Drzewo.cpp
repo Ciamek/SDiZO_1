@@ -395,3 +395,7 @@ ElementDrzewa *Drzewo::findSmallestElement(ElementDrzewa *p) {
         while (p->left != &guard) p = p->left;
     return p;
 }
+
+int Drzewo::getSize() {
+    return this->size;
+}

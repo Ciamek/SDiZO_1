@@ -9,56 +9,39 @@ struct ElementDrzewa{
        ElementDrzewa *parent;
        ElementDrzewa *left;
        ElementDrzewa *right;
-
     char color;
     int value;
 };
 
-
 class Drzewo {
-
 public:
-
     std::string rightCorner, leftCorner, bar;
-
-    int size;
-
+    ElementDrzewa *root;
     Drzewo();
-
     ~Drzewo();
-
-    void deleteAll();
-
     void push(int);
 
     void deleteElement(int);
 
+    void deleteAll();
+
     void rotateLeft(ElementDrzewa *treeElement);
-
     void rotateRight(ElementDrzewa *treeElement);
-
     bool checkIfPresent(int);
-
     void printGraphic(const std::string &spaces, std::string corner, ElementDrzewa *pElementDrzewa);
-
-    ElementDrzewa *root;
 
     void print();
 
-    bool findElement(int value, ElementDrzewa *elementRoot, ElementDrzewa *&soughtElement);
+    int getSize();
 
 private:
 
     ElementDrzewa guard{};
-
+    int size;
     void deleteElement(ElementDrzewa *elementDrzewa);
-
     bool findVaule(int wartosc, ElementDrzewa *elementRoot);
-
     ElementDrzewa *findNextElement(ElementDrzewa *p);
-
     ElementDrzewa *findSmallestElement(ElementDrzewa *p);
-
     ElementDrzewa *findElement(int value);
 };
 
